@@ -16,9 +16,7 @@ def main():
     st.set_page_config(page_title="Ask your PDF")
     st.header("Ask your PDF")
     
-    with open("style.css") as f:
-      st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
+  
       
     # upload file
     pdf = st.file_uploader("Upload your PDF", type="pdf")
@@ -53,6 +51,7 @@ def main():
         with get_openai_callback() as cb:
           response = chain.run(input_documents=docs, question=user_question)
           print(cb)
+           
            
         st.write(response)
     
